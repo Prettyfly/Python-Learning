@@ -1,5 +1,5 @@
 # Mini-project #6 - Blackjack
-# http://www.codeskulptor.org/#user16_ojD4mcllgPl2uTR.py
+# It works with codesculptor http://www.codeskulptor.org/
 
 import simplegui
 import random
@@ -14,7 +14,7 @@ CARD_BACK_CENTER = (35.5, 48)
 card_back = simplegui.load_image("http://commondatastorage.googleapis.com/codeskulptor-assets/card_back.png")    
 
 # initialize some useful global variables
-in_play = False
+in_play = True
 outcome = ""
 score = 1
 
@@ -63,9 +63,8 @@ class Hand:
         return total    # return a string representation of a hand
 
     def add_card(self, card):
-        self.cards_in_hand.append(card)  # add a card object to a hand
-        print self
-    
+        self.cards_in_hand.append(card)    # add a card object to a hand
+            
     def get_value(self):
         self.value = 0   # count aces as 1, if the hand has an ace, then add 10 to hand value if it doesn't bust
         is_aces = False
@@ -113,13 +112,12 @@ def deal():
     bj_deck.shuffle()
     outcome = "Hit or stand?"
     dealer_value = "?"
-    score -= 1
     for i in range(2):
         player_hand.add_card(bj_deck.deal_card())
         dealer_hand.add_card(bj_deck.deal_card())
         dealer_hand.cards_in_hand[0].reveal = False
-    print player_hand.get_value()
-    print dealer_hand.get_value()
+    if in_play:
+        score -= 1
     in_play = True
 
 def hit():
@@ -139,6 +137,7 @@ def stand():
         dealer_value = dealer_hand.get_value()
         while dealer_hand.get_value() < 17:
             dealer_hand.add_card(bj_deck.deal_card())
+            dealer_value = dealer_hand.get_value()
         if dealer_hand.get_value() > 21:
             win() 
         elif player_hand.get_value() > dealer_hand.get_value():
