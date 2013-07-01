@@ -1,3 +1,4 @@
+#http://www.codeskulptor.org/#user17_KafugDefG0_5.py
 # program template for Spaceship
 import simplegui
 import math
