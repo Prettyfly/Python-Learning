@@ -1,4 +1,4 @@
-#http://www.codeskulptor.org/#user17_KafugDefG0_5.py
+#http://www.codeskulptor.org/#user17_KafugDefG0_7.py
 # program template for Spaceship
 import simplegui
 import math
@@ -11,11 +11,12 @@ score = 0
 lives = 3
 time = 0.5
 spaceship_speed = 0.15
-friction = 0.99 # friction multiple
+friction = 0.99 
 missile_vel = 10
 rock_group = set([])
 missile_group = set([])
 explosion_group = set([])
+rocks_vel = 3
 started = False
 
 class ImageInfo:
@@ -90,7 +91,7 @@ def angle_to_vector(ang):
 def random_velocity():
     angle = 2 * math.pi * random.random()   
     vector = angle_to_vector(angle)
-    vel = [random.random() * vector[0], random.random() * vector[1]]
+    vel = [rocks_vel * random.random() * vector[0],rocks_vel * random.random() * vector[1]]
     return vel
     
 def dist(p,q):
